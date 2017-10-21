@@ -1,0 +1,49 @@
+<div>
+
+    <h1>Hi {{currentUser.firstName}} {{currentUser.lastName}}!</h1>
+
+    <h3>Here are your companions registered users:</h3>
+
+    <table style="width:100%">
+        <tr>
+            <th></th>
+            <th>{{FirstNameColumn | translate}}</th>
+            <th>{{LastNameColumn | translate}}</th>
+            <th>{{UserNameColumn| translate}}</th>
+            <th>{{EmailColumn | translate}}</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let user of users">
+            <td>
+                <a [routerLink]="['/my-profile', user._id]">
+                    <img *ngIf="user.profile_photo" [src]="user.profile_photo" class="user-image">
+                </a>
+            </td>
+            <td>
+                <a [routerLink]="['/my-profile', user._id]">
+                    {{user.firstName}}
+                </a>
+            </td>
+            <td>
+                <a [routerLink]="['/my-profile', user._id]">
+                    {{user.lastName}}
+                </a>
+            </td>
+            <td>
+                <a [routerLink]="['/my-profile', user._id]">
+                    {{user.username}}
+                </a>
+            </td>
+            <td>
+                <a [routerLink]="['/my-profile', user._id]">
+                    {{user.email}}
+                </a>
+            </td>
+            <td>
+                <a (click)="deleteUser(user)">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+    <p><a [routerLink]="['/login']">Logout</a></p>
+</div>
